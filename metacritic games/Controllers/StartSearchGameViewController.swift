@@ -61,6 +61,24 @@ class StartSearchGameViewController: UIViewController {
             }
         }
     }
+    func fieldValidation() -> Bool {
+        if searchTF.text == "" {
+            presentAlertController(with: "empty field", message: "Enter the name of the game")
+            return false
+        }
+        return true
+    }
+    func replaceSpaces(text: String) -> String {
+        var newText = ""
+        for ch in text {
+            if ch == " " {
+                newText.append("%20")
+            } else {
+                newText.append(ch)
+            }
+        }
+        return newText
+    }
     
     func search() {
         if selectedPlatform == nil {
@@ -73,10 +91,10 @@ class StartSearchGameViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "go to the GamesTableView":
-            let GamesVC = segue.destination as! GamesTableViewController
-            //
+            let gamesVC = segue.destination as! GamesTableViewController
+            gamesVC.gameName = replaceSpaces(text: searchTF.text!)
         case "go to the GameInfoViewController":
-            let GameInfoVC = segue.destination as! GameInfoViewController
+            let gameInfoVC = segue.destination as! GameInfoViewController
             //
         default:
             break
@@ -91,7 +109,9 @@ extension StartSearchGameViewController: UITextFieldDelegate {
         view.endEditing(true)
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        search()
+        if fieldValidation() {
+            search()
+        }
         return true
     }
 }
@@ -103,3 +123,12 @@ enum Platform: Int {
     case XBOX
 }
 
+// MARK: alertController
+
+extension StartSearchGameViewController {
+    func presentAlertController(with title: String, message: String) {
+        let alertC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertC.addAction(.init(title: "OK", style: .cancel, handler: nil))
+        present(alertC, animated: true, completion: nil)
+    }
+}
