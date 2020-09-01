@@ -16,6 +16,10 @@
 		E337A3DF24F9068C00B4DDDD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E337A3DE24F9068C00B4DDDD /* .gitignore */; };
 		E337A3EB24F98B2300B4DDDD /* GamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E337A3EA24F98B2300B4DDDD /* GamesTableViewController.swift */; };
 		E337A3ED24F98B3E00B4DDDD /* GameInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E337A3EC24F98B3E00B4DDDD /* GameInfoViewController.swift */; };
+		E337A3EF24FCE9C300B4DDDD /* GameNameAndPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = E337A3EE24FCE9C300B4DDDD /* GameNameAndPlatform.swift */; };
+		E337A3F124FCEB0400B4DDDD /* GameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E337A3F024FCEB0400B4DDDD /* GameInfo.swift */; };
+		E337A3F324FCF30500B4DDDD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E337A3F224FCF30500B4DDDD /* NetworkService.swift */; };
+		E337A3F924FE31C000B4DDDD /* GamePlatformViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E337A3F824FE31C000B4DDDD /* GamePlatformViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		E337A3DE24F9068C00B4DDDD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		E337A3EA24F98B2300B4DDDD /* GamesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesTableViewController.swift; sourceTree = "<group>"; };
 		E337A3EC24F98B3E00B4DDDD /* GameInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoViewController.swift; sourceTree = "<group>"; };
+		E337A3EE24FCE9C300B4DDDD /* GameNameAndPlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNameAndPlatform.swift; sourceTree = "<group>"; };
+		E337A3F024FCEB0400B4DDDD /* GameInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfo.swift; sourceTree = "<group>"; };
+		E337A3F224FCF30500B4DDDD /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		E337A3F824FE31C000B4DDDD /* GamePlatformViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlatformViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +95,9 @@
 		E337A3E724F97EAD00B4DDDD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E337A3EE24FCE9C300B4DDDD /* GameNameAndPlatform.swift */,
+				E337A3F024FCEB0400B4DDDD /* GameInfo.swift */,
+				E337A3F224FCF30500B4DDDD /* NetworkService.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -94,6 +105,7 @@
 		E337A3E824F97EB400B4DDDD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E337A3F824FE31C000B4DDDD /* GamePlatformViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -180,11 +192,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E337A3F124FCEB0400B4DDDD /* GameInfo.swift in Sources */,
 				E337A3CB24F8431500B4DDDD /* StartSearchGameViewController.swift in Sources */,
+				E337A3F324FCF30500B4DDDD /* NetworkService.swift in Sources */,
 				E337A3EB24F98B2300B4DDDD /* GamesTableViewController.swift in Sources */,
+				E337A3F924FE31C000B4DDDD /* GamePlatformViewCell.swift in Sources */,
 				E337A3C724F8431500B4DDDD /* AppDelegate.swift in Sources */,
 				E337A3C924F8431500B4DDDD /* SceneDelegate.swift in Sources */,
 				E337A3ED24F98B3E00B4DDDD /* GameInfoViewController.swift in Sources */,
+				E337A3EF24FCE9C300B4DDDD /* GameNameAndPlatform.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

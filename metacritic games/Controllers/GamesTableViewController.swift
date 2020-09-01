@@ -10,37 +10,42 @@ import UIKit
 
 class GamesTableViewController: UITableViewController {
 
+    var gameName: String!
+    var games: GameNameAndPlatform?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        NetworkService.shared.completion = { [weak self] games in
+               self!.updateGames(games: games )
+        }
+        NetworkService.shared.getGames(gameName: gameName)
+        
+    }
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    
+    func updateGames(games: GameNameAndPlatform) {
+        self.games = games
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        if let games = games {
+            return games.countResult
+        }
         return 0
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "game-platform", for: indexPath) as! GamePlatformViewCell
 
-        // Configure the cell...
-
-        return cell
+        let game = games!.result[indexPath.row]
+        return cell.configureCell(game: game)
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
