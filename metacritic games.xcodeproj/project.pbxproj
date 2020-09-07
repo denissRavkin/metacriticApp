@@ -20,6 +20,8 @@
 		E337A3F124FCEB0400B4DDDD /* GameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E337A3F024FCEB0400B4DDDD /* GameInfo.swift */; };
 		E337A3F324FCF30500B4DDDD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E337A3F224FCF30500B4DDDD /* NetworkService.swift */; };
 		E337A3F924FE31C000B4DDDD /* GamePlatformViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E337A3F824FE31C000B4DDDD /* GamePlatformViewCell.swift */; };
+		E337A3FB24FEAC0800B4DDDD /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = E337A3FA24FEAC0800B4DDDD /* Platform.swift */; };
+		E337A3FD25010A1200B4DDDD /* ReplaceSpaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = E337A3FC25010A1200B4DDDD /* ReplaceSpaces.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		E337A3F024FCEB0400B4DDDD /* GameInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfo.swift; sourceTree = "<group>"; };
 		E337A3F224FCF30500B4DDDD /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		E337A3F824FE31C000B4DDDD /* GamePlatformViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlatformViewCell.swift; sourceTree = "<group>"; };
+		E337A3FA24FEAC0800B4DDDD /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
+		E337A3FC25010A1200B4DDDD /* ReplaceSpaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceSpaces.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 				E337A3EE24FCE9C300B4DDDD /* GameNameAndPlatform.swift */,
 				E337A3F024FCEB0400B4DDDD /* GameInfo.swift */,
 				E337A3F224FCF30500B4DDDD /* NetworkService.swift */,
+				E337A3FA24FEAC0800B4DDDD /* Platform.swift */,
+				E337A3FC25010A1200B4DDDD /* ReplaceSpaces.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,9 +198,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E337A3FB24FEAC0800B4DDDD /* Platform.swift in Sources */,
 				E337A3F124FCEB0400B4DDDD /* GameInfo.swift in Sources */,
 				E337A3CB24F8431500B4DDDD /* StartSearchGameViewController.swift in Sources */,
 				E337A3F324FCF30500B4DDDD /* NetworkService.swift in Sources */,
+				E337A3FD25010A1200B4DDDD /* ReplaceSpaces.swift in Sources */,
 				E337A3EB24F98B2300B4DDDD /* GamesTableViewController.swift in Sources */,
 				E337A3F924FE31C000B4DDDD /* GamePlatformViewCell.swift in Sources */,
 				E337A3C724F8431500B4DDDD /* AppDelegate.swift in Sources */,
@@ -276,7 +284,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -330,7 +338,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -355,6 +363,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "x86_64 arm64";
 			};
 			name = Debug;
 		};
@@ -373,6 +382,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "x86_64 arm64";
 			};
 			name = Release;
 		};

@@ -14,6 +14,12 @@ class StartSearchGameViewController: UIViewController {
     
     @IBOutlet var platformsButtons: [UIButton]!
     
+    @IBAction func searchButton() {
+        if fieldValidation() {
+            search()
+        }
+    }
+    
     let borderColorRed = CGColor(srgbRed: 1, green: 0, blue: 0, alpha: 1)
     
     var selectedPlatform: Platform?
@@ -30,7 +36,7 @@ class StartSearchGameViewController: UIViewController {
     }
     
     @IBAction func choosePlatform(_ sender: UIButton) {
-        if selectedPlatform != nil && sender.tag == selectedPlatform!.rawValue {
+        if selectedPlatform != nil && sender.restorationIdentifier == selectedPlatform!.rawValue {
             sender.layer.borderWidth = 0
             selectedPlatform = nil
             return
@@ -68,17 +74,7 @@ class StartSearchGameViewController: UIViewController {
         }
         return true
     }
-    func replaceSpaces(text: String) -> String {
-        var newText = ""
-        for ch in text {
-            if ch == " " {
-                newText.append("%20")
-            } else {
-                newText.append(ch)
-            }
-        }
-        return newText
-    }
+    
     
     func search() {
         if selectedPlatform == nil {
@@ -92,10 +88,11 @@ class StartSearchGameViewController: UIViewController {
         switch segue.identifier {
         case "go to the GamesTableView":
             let gamesVC = segue.destination as! GamesTableViewController
-            gamesVC.gameName = replaceSpaces(text: searchTF.text!)
+            gamesVC.gameName = ReplaceSpaces.rs(text: searchTF.text!)
         case "go to the GameInfoViewController":
             let gameInfoVC = segue.destination as! GameInfoViewController
-            //
+            gameInfoVC.gameName = ReplaceSpaces.rs(text: searchTF.text!)
+            gameInfoVC.gamePlatform = selectedPlatform!.rawValue
         default:
             break
         }
@@ -114,13 +111,6 @@ extension StartSearchGameViewController: UITextFieldDelegate {
         }
         return true
     }
-}
-// MARK: kinds of platforms
-enum Platform: Int {
-    case PC
-    case PS4
-    case Switch
-    case XBOX
 }
 
 // MARK: alertController

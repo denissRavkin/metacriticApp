@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct GameInfo {
+struct GameInfo: Decodable {
     let result: ResultInfo
 }
 
-struct ResultInfo {
+struct ResultInfo: Decodable {
     let title: String
     let releaseDate: String
     let description: String
@@ -21,7 +21,7 @@ struct ResultInfo {
     let score: Int
     let developer: String
     let publisher: [String]
-    let rating: Character
+    let rating: String
     let alsoAvailableOn: [String]
 }
 
