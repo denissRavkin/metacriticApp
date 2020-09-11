@@ -23,7 +23,6 @@ class GameInfoViewController: UIViewController {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var platformLabel: UILabel!
     @IBOutlet weak var gameImage: UIImageView!
-    
     @IBOutlet weak var descriptionTextView: UITextView!
     
     @IBOutlet weak var viewForLoad: UIView!
@@ -31,13 +30,14 @@ class GameInfoViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var loadImage: UIImageView!
     
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        StorageManager.shared.saveGame(game: .init(gameName: gameName, gamePlatform: gamePlatform, score: Int(scoreLabel.text ?? "0") ?? 0))
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       //print(gameName)
-       //print(gamePlatform)
-        
         viewForLoad.isHidden = false
         activityIndicator.isHidden = false
         activityIndicator.hidesWhenStopped = true
@@ -51,7 +51,6 @@ class GameInfoViewController: UIViewController {
                self!.displayError(textError: textError)
             }
         }
-        
         
         NetworkService.shared.getGameInfo(gameName: ReplaceSpaces.rs(text: gameName), gamePlatform: makeGamePlatformForUrl(platform: gamePlatform))
     }
@@ -88,12 +87,14 @@ class GameInfoViewController: UIViewController {
             self.activityIndicator.stopAnimating()
         }
     }
+    
     func takeAwayLoadView() {
         viewForLoad.isHidden = true
         activityIndicator.stopAnimating()
         errorLabel.isHidden = true
         loadImage.isHidden = true
     }
+    
     func updateInterface(gameInfo: GameInfo) {
         DispatchQueue.main.async {
             self.platformLabel.text = self.gamePlatform
@@ -123,15 +124,15 @@ class GameInfoViewController: UIViewController {
             case 50...74:
                 self.scoreLabel.text = String(score)
                 self.scoreLabel.backgroundColor = .orange
-            case 1...100:
+            case 1...50:
                 self.scoreLabel.text = String(score)
-                self.scoreLabel.backgroundColor = .orange
+                self.scoreLabel.backgroundColor = .red
             default:
                 self.scoreLabel.text = "?"
                 self.scoreLabel.backgroundColor = .gray
             }
             
-                self.takeAwayLoadView()
+            self.takeAwayLoadView()
             
             guard let imageUrl = URL(string: gameInfo.result.image) else { return  }
             guard let imageData = try? Data(contentsOf: imageUrl) else { return }
@@ -139,4 +140,8 @@ class GameInfoViewController: UIViewController {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
 }

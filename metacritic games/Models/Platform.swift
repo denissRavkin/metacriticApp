@@ -6,7 +6,7 @@
 //  Copyright © 2020 water. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 enum Platform: String {
@@ -14,4 +14,19 @@ enum Platform: String {
     case PS4 = "PS4"
     case Switch = "Switch"
     case XBOX = "XBOX"
+    
+    static func determineСolor(platform: String) -> UIColor {
+        switch platform {
+        case "PS5","PS4","PS3","PS2","PS1","VITA":
+            return .systemBlue
+        case "PC":
+            return .black
+        case "Switch","3DS","WII","N64","WIIU":
+            return .systemYellow
+        case "XBOX","X360","XONE":
+            return .systemGreen
+        default:
+            return .gray
+        }
+    }
 }

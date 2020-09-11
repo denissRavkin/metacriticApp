@@ -17,24 +17,13 @@ class GamePlatformViewCell: UITableViewCell {
     func configureCell(game: Result )-> UITableViewCell {
         
         self.gameNameLabel.text = game.title
-        //self.gameNameLabel.backgroundColor = 
+        //self.gameNameLabel.backgroundColor =
         self.platformLabel.text = game.platform
-        self.platformLabel.backgroundColor = determineСolor(platform: game.platform)
+        self.platformLabel.backgroundColor = Platform.determineСolor(platform: game.platform)
     
         return self
     }
-    func determineСolor(platform: String) -> UIColor {
-        switch platform {
-        case "PS5","PS4","PS3","PS2","PS1":
-            return .systemBlue
-        case "PC":
-            return .black
-        case "Switch","3DS","WII","N64","WIIU":
-            return .systemYellow
-        case "XBOX","X360","XONE":
-            return .systemGreen
-        default:
-            return .gray
-        }
-    }
+    
+    
+    
 }
