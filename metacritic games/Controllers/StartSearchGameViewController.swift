@@ -35,6 +35,12 @@ class StartSearchGameViewController: UIViewController {
         }
     }
     
+    @IBAction func searchButton() {
+        if fieldValidation() {
+            search()
+        }
+    }
+    
     @IBAction func choosePlatform(_ sender: UIButton) {
         if selectedPlatform != nil && sender.restorationIdentifier == selectedPlatform!.rawValue {
             sender.layer.borderWidth = 0
