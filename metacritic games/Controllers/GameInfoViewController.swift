@@ -38,54 +38,21 @@ class GameInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLoadView()
+        
+        let gamesDataFetcher = GamesDataFetcherService()
+        gamesDataFetcher.getGameInfo(gameName: gameName, gamePlatform: gamePlatform, networkErrorDelegate: self) { [weak self] game in
+            guard let game = game else { return }
+            self?.updateInterface(gameInfo: game)
+        }
+    }
+    
+    func setupLoadView() {
         viewForLoad.isHidden = false
         activityIndicator.isHidden = false
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
         errorLabel.isHidden = true
-        
-        NetworkService.shared.completion = { [weak self] gameInfo in
-            if let gameInfo = gameInfo as? GameInfo {
-               self!.updateInterface(gameInfo: gameInfo)
-            } else if let textError = gameInfo as? String {
-               self!.displayError(textError: textError)
-            }
-        }
-        
-        NetworkService.shared.getGameInfo(gameName: ReplaceSpaces.rs(text: gameName), gamePlatform: makeGamePlatformForUrl(platform: gamePlatform))
-    }
-    
-    func makeGamePlatformForUrl(platform: String) -> String {
-        switch platform {
-        case "PS5":
-            return "playstation-5"
-        case "PS4":
-            return "playstation-4"
-        case "PS3":
-            return "playstation-3"
-        case "PS2":
-            return "playstation-2"
-        case "PS1":
-            return "playstation-1"
-        case "PC":
-            return "pc"
-        case "Switch":
-            return "switch"
-        case "XBOX":
-            return "xbox-one"
-        case "X360":
-            return "xbox-360"
-        default:
-            return platform.lowercased()
-        }
-    }
-    
-    func displayError(textError: String) {
-        DispatchQueue.main.async {
-            self.errorLabel.isHidden = false
-            self.errorLabel.text = textError
-            self.activityIndicator.stopAnimating()
-        }
     }
     
     func takeAwayLoadView() {
@@ -143,5 +110,22 @@ class GameInfoViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
+    }
+}
+
+extension GameInfoViewController: NetworkErrorDelegate {
+    func displayError(error: NetworkErrorType) {
+        DispatchQueue.main.async {
+            self.errorLabel.isHidden = false
+            self.activityIndicator.stopAnimating()
+            switch error {
+            case .incorrectUrl:
+                self.errorLabel.text = "Неверный запрос."
+            case .noData:
+                self.errorLabel.text = "Данные не пришли."
+            case .failedDecode:
+                self.errorLabel.text = "Нет результата."
+            }
+        }
     }
 }

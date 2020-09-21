@@ -5,7 +5,7 @@
 //  Created by ТАБЛЕТКИ on 31.08.2020.
 //  Copyright © 2020 water. All rights reserved.
 //
-
+/*
 import Foundation
 
 class NetworkService {
@@ -47,7 +47,7 @@ class NetworkService {
     }
     
     func getGameInfo(gameName: String, gamePlatform: String) {
-        
+        let gamePlatform = makeGamePlatformForUrl(platform: gamePlatform)
         print("getGameInfo(gameName: \(gameName), gamePlatform: \(gamePlatform)")
         let session = URLSession.shared
         guard let url = URL(string: "https://chicken-coop.p.rapidapi.com/games/\(gameName)?platform=\(gamePlatform)&rapidapi-key=74019db3bemshe66cccf6a4168ffp1ef1c1jsn450bff61b1c2") else {
@@ -75,4 +75,30 @@ class NetworkService {
         }.resume()
     }
     
+    func makeGamePlatformForUrl(platform: String) -> String {
+           switch platform {
+           case "PS5":
+               return "playstation-5"
+           case "PS4":
+               return "playstation-4"
+           case "PS3":
+               return "playstation-3"
+           case "PS2":
+               return "playstation-2"
+           case "PS1":
+               return "playstation-1"
+           case "PC":
+               return "pc"
+           case "Switch":
+               return "switch"
+           case "XBOX":
+               return "xbox-one"
+           case "X360":
+               return "xbox-360"
+           default:
+               return platform.lowercased()
+           }
+       }
+    
 }
+ */

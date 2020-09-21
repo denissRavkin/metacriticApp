@@ -14,30 +14,20 @@ class StartSearchGameViewController: UIViewController {
     
     @IBOutlet var platformsButtons: [UIButton]!
     
-    @IBAction func searchButton() {
-        if fieldValidation() {
-            search()
-        }
-    }
-    
     let borderColorRed = CGColor(srgbRed: 1, green: 0, blue: 0, alpha: 1)
     
     var selectedPlatform: Platform?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         searchTF.delegate = self
-        
+        customizeAppearanceOfPlatformsButtons()
+    }
+    
+    func customizeAppearanceOfPlatformsButtons() {
         for button in platformsButtons {
             button.layer.borderColor = borderColorRed
             button.layer.borderWidth = 0
-        }
-    }
-    
-    @IBAction func searchButton() {
-        if fieldValidation() {
-            search()
         }
     }
     
@@ -73,6 +63,13 @@ class StartSearchGameViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func searchButton() {
+           if fieldValidation() {
+               search()
+           }
+    }
+    
     func fieldValidation() -> Bool {
         if searchTF.text == "" {
             presentAlertController(with: "empty field", message: "Enter the name of the game")
@@ -80,7 +77,6 @@ class StartSearchGameViewController: UIViewController {
         }
         return true
     }
-    
     
     func search() {
         if selectedPlatform == nil {
@@ -90,6 +86,7 @@ class StartSearchGameViewController: UIViewController {
         }
         
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "go to the GamesTableView":

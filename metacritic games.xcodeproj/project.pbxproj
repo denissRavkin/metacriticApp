@@ -26,6 +26,9 @@
 		E3C70FD025068EC200738994 /* SavedGameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C70FCF25068EC200738994 /* SavedGameInfo.swift */; };
 		E3C70FD22506ADCD00738994 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C70FD12506ADCD00738994 /* StorageManager.swift */; };
 		E3C70FD42506DFB800738994 /* SavedGameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C70FD32506DFB800738994 /* SavedGameCollectionViewCell.swift */; };
+		E3C70FFC2510E09100738994 /* GamesDataFetcherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C70FFB2510E09100738994 /* GamesDataFetcherService.swift */; };
+		E3C70FFE2510E1D000738994 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C70FFD2510E1D000738994 /* NetworkDataFetcher.swift */; };
+		E3EB8E8B2513641B00678EE0 /* NetworkErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EB8E8A2513641B00678EE0 /* NetworkErrorType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		E3C70FCF25068EC200738994 /* SavedGameInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedGameInfo.swift; sourceTree = "<group>"; };
 		E3C70FD12506ADCD00738994 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		E3C70FD32506DFB800738994 /* SavedGameCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedGameCollectionViewCell.swift; sourceTree = "<group>"; };
+		E3C70FFB2510E09100738994 /* GamesDataFetcherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesDataFetcherService.swift; sourceTree = "<group>"; };
+		E3C70FFD2510E1D000738994 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
+		E3EB8E8A2513641B00678EE0 /* NetworkErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,13 +113,16 @@
 		E337A3E724F97EAD00B4DDDD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E337A3FA24FEAC0800B4DDDD /* Platform.swift */,
 				E337A3EE24FCE9C300B4DDDD /* GameNameAndPlatform.swift */,
 				E337A3F024FCEB0400B4DDDD /* GameInfo.swift */,
-				E337A3F224FCF30500B4DDDD /* NetworkService.swift */,
-				E337A3FA24FEAC0800B4DDDD /* Platform.swift */,
-				E337A3FC25010A1200B4DDDD /* ReplaceSpaces.swift */,
 				E3C70FCF25068EC200738994 /* SavedGameInfo.swift */,
 				E3C70FD12506ADCD00738994 /* StorageManager.swift */,
+				E337A3F224FCF30500B4DDDD /* NetworkService.swift */,
+				E337A3FC25010A1200B4DDDD /* ReplaceSpaces.swift */,
+				E3C70FFB2510E09100738994 /* GamesDataFetcherService.swift */,
+				E3C70FFD2510E1D000738994 /* NetworkDataFetcher.swift */,
+				E3EB8E8A2513641B00678EE0 /* NetworkErrorType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -211,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3C70FCE25068DF000738994 /* SavedGamesCollectionVC.swift in Sources */,
+				E3C70FFC2510E09100738994 /* GamesDataFetcherService.swift in Sources */,
 				E3C70FD42506DFB800738994 /* SavedGameCollectionViewCell.swift in Sources */,
 				E337A3FB24FEAC0800B4DDDD /* Platform.swift in Sources */,
 				E3C70FD025068EC200738994 /* SavedGameInfo.swift in Sources */,
@@ -218,6 +228,8 @@
 				E337A3F124FCEB0400B4DDDD /* GameInfo.swift in Sources */,
 				E337A3CB24F8431500B4DDDD /* StartSearchGameViewController.swift in Sources */,
 				E337A3F324FCF30500B4DDDD /* NetworkService.swift in Sources */,
+				E3EB8E8B2513641B00678EE0 /* NetworkErrorType.swift in Sources */,
+				E3C70FFE2510E1D000738994 /* NetworkDataFetcher.swift in Sources */,
 				E337A3FD25010A1200B4DDDD /* ReplaceSpaces.swift in Sources */,
 				E337A3EB24F98B2300B4DDDD /* GamesTableViewController.swift in Sources */,
 				E337A3F924FE31C000B4DDDD /* GamePlatformViewCell.swift in Sources */,

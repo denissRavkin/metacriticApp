@@ -20,27 +20,27 @@ class GamesTableViewController: UITableViewController {
     @IBOutlet weak var imageLoad: UIImageView!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        setupLoadView()
+        
+        let gamesDataFetcher = GamesDataFetcherService()
+        gamesDataFetcher.getGames(gameName: gameName, networkErrorDelegate: self) { [weak self] games in
+            guard let games = games else { return }
+            self?.updateGames(games: games)
+        }
+    }
+
+    func updateGames(games: GameNameAndPlatform) {
+        self.games = games
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func setupLoadView() {
         labelError.isHidden = true
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
-        
-        super.viewDidLoad()
-        NetworkService.shared.completion = { [weak self] games in
-            if let games = games as? GameNameAndPlatform {
-                self!.updateGames(games: games)
-            } else if let textError = games as? String {
-                self!.displayError(textError: textError)
-            }
-        }
-        print(NetworkService.shared.getGames(gameName: gameName))
-    }
-
-    func displayError(textError: String) {
-        DispatchQueue.main.async {
-            self.labelError.isHidden = false
-            self.labelError.text = textError
-            self.activityIndicator.stopAnimating()
-        }
     }
     
     func takeAwayLoadView() {
@@ -49,23 +49,14 @@ class GamesTableViewController: UITableViewController {
         labelError.isHidden = true
         imageLoad.isHidden = true
     }
-    
-    func updateGames(games: GameNameAndPlatform) {
-        self.games = games
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(#function)
         if let games = games {
-            print("tv if")
             takeAwayLoadView()
             return games.countResult
         }
-        print("tf return 0")
         return 0
     }
 
@@ -90,4 +81,21 @@ class GamesTableViewController: UITableViewController {
         gameInfoVC.gamePlatform = selectGame!.platform
     }
 
+}
+
+extension GamesTableViewController: NetworkErrorDelegate {
+    func displayError(error: NetworkErrorType) {
+        DispatchQueue.main.async {
+            self.labelError.isHidden = false
+            self.activityIndicator.stopAnimating()
+            switch error {
+            case .incorrectUrl:
+                self.self.labelError.text = "Неверный запрос. Введите название игры на английском языке."
+            case .noData:
+                self.labelError.text = "Данные не пришли"
+            case .failedDecode:
+                self.labelError.text = "Нет результата"
+            }
+        }
+    }
 }
